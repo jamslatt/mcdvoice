@@ -1,0 +1,105 @@
+<template name="base">
+  <head>
+    <title>MCD Feedback</title>
+  </head>
+
+  <body>
+    {{>yield}}
+  </body>
+</template>
+<template name="main">
+<div class="container" style="margin-top: 5vh;">
+  <div class="row">
+      <div class="col s12 m12">
+        <h3>MCD Feedback</h3>
+        <p>Feel free to send any long suggestions to <span style="font-weght: 900;">feedback@pensuilamcdonalds.com</span></p>
+      </div>
+    </div>
+  {{#autoForm collection="feedback" id="insertfeedback" type="insert" class="new-feedback" }}
+    <div class="row">
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Overall Satisfaction</span>
+              {{> afQuickField name="overallScore"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">What kind of items did you order?</span>
+                {{> afQuickField name="foodtype"}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">How would you rate the overall cleanliness of the resturant?</span>
+                  {{> afQuickField name="clean"}}
+                </div>
+              </div>
+            </div>
+          </div>
+      <div class="row">
+        <div class="col s12 m12">
+          <button type="submit" style="width: 100%" class="btn btn-large" onclick="location.replace('/submitted');">Submit</button>
+        </div>
+      </div>
+      {{/autoForm}}
+</div>
+</template>
+<template name="confirmSubmit">
+<br/><br/>
+<div class="container">
+  <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Thank you for your feedback!</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae varius tellus, et ultrices urna. In urna sapien, ullamcorper sit amet cursus vel, condimentum ac enim. Integer euismod metus lobortis arcu sagittis fermentum. Praesent quis risus ac dolor finibus eleifend. Duis ut purus auctor, sodales magna dignissim, luctus dui.</p>
+                <br/><br/>
+                <p>This page will return back to the feedback survey in 30 seconds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</template>
+<template name="results">
+  <br/><br/>
+    <div class="container">
+      <div class="row">
+              <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">Overall Satisfaction</span>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-content">
+                    <span class="card-title">Cleanliness Rating</span>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="e">blah</div>
+    <span class="averages">
+      {{#each allScore}}
+        {{ overallScore }}
+      {{/each}}
+    </span>
+    <hr/>
+    {{> topFood}}
+    {{averageScore}}
+</template>
